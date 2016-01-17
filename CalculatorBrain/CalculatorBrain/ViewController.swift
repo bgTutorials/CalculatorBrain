@@ -21,9 +21,26 @@ class ViewController: UIViewController {
             display.text = display.text! + digit
         } else {
             display.text = digit
+            userIsInTheMiddleOfTypingANumber = true
         }
         print("digit = \(digit)")
+    }
 
+    var operandStack = [Double]()
+    
+    @IBAction func enter() {
+        userIsInTheMiddleOfTypingANumber = false
+        operandStack.append(displayValue)
+        print("operandStack = \(operandStack)")
+    }
+
+    var displayValue: Double {
+        get {
+            return NSNumberFormatter().numberFromString(display.text!)!.doubleValue
+        } set {
+            display.text = "\(newValue)"
+            userIsInTheMiddleOfTypingANumber = false
+        }
     }
 
 }
