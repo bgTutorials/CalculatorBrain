@@ -16,6 +16,9 @@ class ViewController: UIViewController {
 
 // Fantastic explanation and demonstartion of closures in Stanford video #2 from 28'-40'
     
+    // *** 31' mark
+    
+    
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         
