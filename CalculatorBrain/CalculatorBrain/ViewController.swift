@@ -30,10 +30,10 @@ class ViewController: UIViewController {
     }
 
 
-// beginning at @31' - 34:30'
-// We are going to take the operations out of the operate() and create new funcitons to share the code between each
-    // differnt operation. We will declare the performOperation() as a type which take a function whose argumetns are 
-    //two doubles and returns a double
+// beginning at @34:30' - 36:16'
+//The good news is that it is so common to pass functions as arguments in Swift, you are able to put the function right into another function
+    // rather than creating other (more) functions.
+    // these are the beginning to closures
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
@@ -41,19 +41,26 @@ class ViewController: UIViewController {
             enter()
         }
         switch operation {
-            case "×": performOperation(multiply)
-            case "÷": performOperation(divide)
-            case "+": performOperation(addition)
+    //1. In swift we are able to put the operational functions we are using right into the arguments of the performOperation() parameters.
+            // the only difference when passing a function as the argument of another funcion is we need to move the first { to just before the 
+            // arguements are declared and replace it with the syntax "in"
+        case "×": performOperation({ (op1: Double, op2:Double) -> Double in
+            return op1 * op2
+            })
+            // this bit of syntax sweetness are called closures - when you pass a function directly into the argument of another function rather 
+            // than declaring seperate functions. *Got that*
+        case "÷": performOperation({ (op1: Double, op2:Double) -> Double in
+            return op1 / op2
+        })
+        case "+": performOperation({ (op1: Double, op2:Double) -> Double in
+            return op1 + op2
+        })
 //            case "−":
         default: break
         }
     }
     
-//Let's try to go more DRY by sharing a function among the operations in the operate()
-// WE CAN DO THAT BY DECLARING A FUNCTION AS A TYPE WHICH TAKE EACH INDIVIDUAL OPERATION FUNCTION
-    
-    //1. here we begin by declaring the performOperation() as a type: (Double, Double) -> Double
-    // This function takes a function which has two arguments (each doubles) and returns a double
+    //2.The performOperation() remains the same
     func performOperation(operation: (Double, Double) -> Double) {
         if operandStack.count >= 2 {
             displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
@@ -61,21 +68,8 @@ class ViewController: UIViewController {
         }
     }
     
-    //2. Next each case of the operations are entered below, which the performOperation() will take as its arguments
-    func multiply(op1: Double, op2:Double) ->Double {
-        return op1 * op2
-    }
-
-    func divide(op1: Double, op2:Double) ->Double {
-        return op1 / op2
-    }
-
-    func addition(op1: Double, op2:Double) ->Double {
-        return op1 + op2
-    }
-
-//Now, the problem with the above solution, well, it is just a code heavy and again repeating alot of the same code.
-    // while we are sharing some code, we are repeating much of the same again.
+//This code is looking alot better than where we were in step 1. But because Swift has such strong Type Inference, we can still eliminate
+    // code from those closure
     
     var operandStack = [Double]()
     
