@@ -30,10 +30,8 @@ class ViewController: UIViewController {
     }
 
 
-// beginning at @34:30' - 36:16'
-//The good news is that it is so common to pass functions as arguments in Swift, you are able to put the function right into another function
-    // rather than creating other (more) functions.
-    // these are the beginning to closures
+// beginning at @36:16' - 37:11'
+//Swift's powerful Type Inference allows eliminate the need to declare the types of the passed function's arguments (see: Double)
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
@@ -41,36 +39,23 @@ class ViewController: UIViewController {
             enter()
         }
         switch operation {
-    //1. In swift we are able to put the operational functions we are using right into the arguments of the performOperation() parameters.
-            // the only difference when passing a function as the argument of another funcion is we need to move the first { to just before the 
-            // arguements are declared and replace it with the syntax "in"
-        case "×": performOperation({ (op1: Double, op2:Double) -> Double in
-            return op1 * op2
-            })
-            // this bit of syntax sweetness are called closures - when you pass a function directly into the argument of another function rather 
-            // than declaring seperate functions. *Got that*
-        case "÷": performOperation({ (op1: Double, op2:Double) -> Double in
-            return op1 / op2
-        })
-        case "+": performOperation({ (op1: Double, op2:Double) -> Double in
-            return op1 + op2
-        })
+    //1. Because Swift knows we are calling performOperation(), it knows the arguments - op1 & op2 - are Double.   
+        case "×": performOperation({ (op1, op2) in return op1 * op2 })
+        case "÷": performOperation({ (op1, op2) in return op1 / op2 })
+        case "+": performOperation({ (op1, op2) in return op1 + op2 })
 //            case "−":
         default: break
         }
     }
     
-    //2.The performOperation() remains the same
+    //2. Because we are calling this function, it knows this function takes two Doubles as its arguments and returns a Double
     func performOperation(operation: (Double, Double) -> Double) {
         if operandStack.count >= 2 {
             displayValue = operation(operandStack.removeLast(), operandStack.removeLast())
             enter()
         }
     }
-    
-//This code is looking alot better than where we were in step 1. But because Swift has such strong Type Inference, we can still eliminate
-    // code from those closure
-    
+        
     var operandStack = [Double]()
     
     @IBAction func enter() {
