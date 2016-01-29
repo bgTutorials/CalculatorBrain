@@ -16,8 +16,6 @@ class ViewController: UIViewController {
 
 // Fantastic explanation and demonstartion of closures in Stanford video #2 from 28'-40'
     
-    // *** 31' mark
-    
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -30,6 +28,10 @@ class ViewController: UIViewController {
         }
         print("digit = \(digit)")
     }
+
+
+// @30:45 - Here the operate() is providing the operations we need, but this is very sloppy code and NOT 
+    // DRY. If someone was to read this code, they would laugh at how poor of programmers I am
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
@@ -37,14 +39,26 @@ class ViewController: UIViewController {
             enter()
         }
         switch operation {
-        case "×":
-            if operandStack.count >= 2 {
-                displayValue = operandStack.removeLast() * operandStack.removeLast()
-                enter()
+            case "×":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() * operandStack.removeLast()
+                    enter()
             }
-//      case "÷":
-//      case "+":
-//      case "−":
+            case "÷":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() / operandStack.removeLast()
+                    enter()
+            }
+            case "+":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() + operandStack.removeLast()
+                    enter()
+            }
+            case "−":
+                if operandStack.count >= 2 {
+                    displayValue = operandStack.removeLast() - operandStack.removeLast()
+                    enter()
+            }
         default: break
         }
     }
