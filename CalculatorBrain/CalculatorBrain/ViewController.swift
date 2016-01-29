@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
 
+// Fantastic explanation and demonstartion of closures in Stanford video #2 from 28'-40'
+    
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
         
@@ -25,24 +27,26 @@ class ViewController: UIViewController {
         }
         print("digit = \(digit)")
     }
-
-    var operandStack = [Double]()
     
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
+        if userIsInTheMiddleOfTypingANumber {
+            enter()
+        }
         switch operation {
-            case "×":
-                if operandStack.count >= 2 {
-                    displayValue = operandStack.removeLast() * operandStack.removeLast()
-                    enter()
-                }
-//            case "÷":
-//            case "+":
-//            case "−":
-            default: break
+        case "×":
+            if operandStack.count >= 2 {
+                displayValue = operandStack.removeLast() * operandStack.removeLast()
+                enter()
+            }
+//      case "÷":
+//      case "+":
+//      case "−":
+        default: break
         }
     }
     
+    var operandStack = [Double]()
     
     @IBAction func enter() {
         userIsInTheMiddleOfTypingANumber = false
