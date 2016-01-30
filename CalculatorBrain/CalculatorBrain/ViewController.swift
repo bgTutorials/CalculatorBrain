@@ -13,9 +13,6 @@ class ViewController: UIViewController {
     var userIsInTheMiddleOfTypingANumber: Bool = false
     
     @IBOutlet weak var display: UILabel!
-
-// Fantastic explanation and demonstartion of closures in Stanford video #2 from 28'-40'
-    
     
     @IBAction func appendDigit(sender: UIButton) {
         let digit = sender.currentTitle!
@@ -29,29 +26,19 @@ class ViewController: UIViewController {
         print("digit = \(digit)")
     }
 
+    //Lecture 2 - 40:30 -44:30'
 
-// beginning at @37:11' - 40'
-//Swift's powerful Type Inference allows eliminate the need to declare the types of the passed function's arguments (see: Double)
-    
     @IBAction func operate(sender: UIButton) {
         let operation = sender.currentTitle!
         if userIsInTheMiddleOfTypingANumber {
             enter()
         }
         switch operation {
-        // 1. we dont need to express "return" because again Swift infers from the called function that it returns the operation
         case "×": performOperation({ (op1, op2) in op1 * op2 })
-            
-        //2. Swift does not force you to name the arguments (ie. op1 & op2), 
-        //if you dont name them Swift will use the $0,$1,$2,$3... as the parameters ofthe argument
-        // Note - the change in order of operations
         case "÷": performOperation({ $1 / $0 })
-            
-        //3. If it is the last argument of the function (performOperation() only has one argument,however) you can put the expression outside the parathesis.
         case "+": performOperation() { $0 + $1 }
-
-        //4. And if it is the only argument passed to the function (as with performOperation()), we can delete the parenthesis entirely.
         case "−": performOperation { $1 - $0 }
+        case "√": performOperationTwo { sqrt($0) }
         default: break
         }
     }
@@ -62,8 +49,13 @@ class ViewController: UIViewController {
             enter()
         }
     }
-
-// Wow, that is some nice, concise code.
+    
+    func performOperationTwo(operation: Double -> Double) {
+        if operandStack.count >= 1 {
+            displayValue = operation(operandStack.removeLast())
+            enter()
+        }
+    }
     
     var operandStack = [Double]()
     
