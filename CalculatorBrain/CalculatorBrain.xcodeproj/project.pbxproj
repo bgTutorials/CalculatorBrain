@@ -12,6 +12,7 @@
 		D37C034B1C4726E900227C5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37C03491C4726E900227C5D /* Main.storyboard */; };
 		D37C034D1C4726E900227C5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D37C034C1C4726E900227C5D /* Assets.xcassets */; };
 		D37C03501C4726E900227C5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D37C034E1C4726E900227C5D /* LaunchScreen.storyboard */; };
+		D38F44AF1C603F6400AAFB8D /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38F44AE1C603F6400AAFB8D /* CalculatorBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		D37C034C1C4726E900227C5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D37C034F1C4726E900227C5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D37C03511C4726E900227C5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D38F44AE1C603F6400AAFB8D /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +56,9 @@
 		D37C03441C4726E900227C5D /* CalculatorBrain */ = {
 			isa = PBXGroup;
 			children = (
-				D37C03451C4726E900227C5D /* AppDelegate.swift */,
+				D38F44AE1C603F6400AAFB8D /* CalculatorBrain.swift */,
 				D37C03471C4726E900227C5D /* ViewController.swift */,
+				D37C03451C4726E900227C5D /* AppDelegate.swift */,
 				D37C03491C4726E900227C5D /* Main.storyboard */,
 				D37C034C1C4726E900227C5D /* Assets.xcassets */,
 				D37C034E1C4726E900227C5D /* LaunchScreen.storyboard */,
@@ -135,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D38F44AF1C603F6400AAFB8D /* CalculatorBrain.swift in Sources */,
 				D37C03481C4726E900227C5D /* ViewController.swift in Sources */,
 				D37C03461C4726E900227C5D /* AppDelegate.swift in Sources */,
 			);
@@ -286,6 +290,7 @@
 				D37C03561C4726E900227C5D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
